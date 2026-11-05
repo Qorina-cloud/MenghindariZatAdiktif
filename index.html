@@ -1,0 +1,847 @@
+<!-- ... existing code ... -->
+    <title>Materi Ajar Interaktif IPA: Upaya Menghindarkan Diri dari Zat Adiktif - MGMP IPA MTs Kota Malang</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Styles for Printing and Animations */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #print-section, #print-section * {
+                visibility: visible;
+            }
+            #print-section {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+        
+        .tab-btn.active {
+            background-color: #10b981;
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+        }
+
+        .materi-card {
+            transition: all 0.3s ease;
+        }
+        .materi-card:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Header Navigation -->
+    <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-2xl border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center py-3 md:py-4 gap-3">
+                <!-- Identitas Penyusun MGMP IPA MTs Kota Malang -->
+                <div class="flex items-center space-x-3 text-center md:text-left">
+                    <div class="w-12 h-12 bg-gradient-to-tr from-emerald-500 to-teal-300 rounded-2xl flex items-center justify-center shadow-lg transform hover:scale-105 transition">
+                        <i class="fa-solid fa-shield-heart text-2xl text-slate-900 font-bold"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center justify-center md:justify-start gap-2">
+                            <span class="bg-emerald-400 text-slate-950 font-extrabold text-[11px] px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm">IPA KELAS IX SMP/MTs</span>
+                            <span class="text-xs text-slate-400 font-medium">Fase D / Semester 1</span>
+                        </div>
+                        <h1 class="text-xl md:text-2xl font-extrabold tracking-tight text-white">Upaya Menghindarkan Diri dari Pengaruh Zat Adiktif</h1>
+                        <p class="text-xs text-emerald-400 font-semibold">Disusun oleh: <span class="text-white underline decoration-emerald-500 font-bold">MGMP IPA MTs Kota Malang</span></p>
+                    </div>
+                </div>
+
+                <!-- Tombol Navigasi Utama -->
+                <nav class="flex flex-wrap justify-center gap-1.5 bg-slate-800 p-1.5 rounded-2xl border border-slate-700 no-print shadow-inner">
+                    <button onclick="switchTab('pendahuluan')" id="tab-pendahuluan" class="tab-btn active px-4 py-2 rounded-xl text-xs md:text-sm font-bold transition flex items-center gap-2">
+                        <i class="fa-solid fa-compass"></i> <span>Pendahuluan</span>
+                    </button>
+                    <button onclick="switchTab('materi')" id="tab-materi" class="tab-btn px-4 py-2 text-slate-300 hover:text-white rounded-xl text-xs md:text-sm font-bold transition flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved"></i> <span>Strategi Pencegahan</span>
+                    </button>
+                    <button onclick="switchTab('lab')" id="tab-lab" class="tab-btn px-4 py-2 text-slate-300 hover:text-white rounded-xl text-xs md:text-sm font-bold transition flex items-center gap-2">
+                        <i class="fa-solid fa-laptop-code"></i> <span>Lab Simulasi</span>
+                    </button>
+                    <button onclick="switchTab('lkpd')" id="tab-lkpd" class="tab-btn px-4 py-2 text-slate-300 hover:text-white rounded-xl text-xs md:text-sm font-bold transition flex items-center gap-2">
+                        <i class="fa-solid fa-file-pen"></i> <span>LKPD</span>
+                    </button>
+                    <button onclick="switchTab('kuis')" id="tab-kuis" class="tab-btn px-4 py-2 text-slate-300 hover:text-white rounded-xl text-xs md:text-sm font-bold transition flex items-center gap-2">
+                        <i class="fa-solid fa-award"></i> <span>Kuis</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- ================= SECTION 1: PENDAHULUAN ================= -->
+        <section id="sec-pendahuluan" class="tab-content space-y-6">
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-teal-900 via-slate-900 to-slate-950 text-white p-6 md:p-10 shadow-xl">
+                <div class="relative z-10 max-w-3xl">
+                    <span class="bg-emerald-400 text-slate-950 font-bold text-xs px-3 py-1 rounded-full inline-block mb-3 shadow">Benteng Diri & Karakter Remaja</span>
+                    <h2 class="text-2xl md:text-4xl font-extrabold mb-4 leading-tight">Bagaimana Cara Remaja Say No to Drugs dan Menolak Bujukan Zat Adiktif?</h2>
+                    <p class="text-slate-200 text-sm md:text-base mb-6 leading-relaxed">
+                        Masa remaja adalah masa pencarian jati diri yang penuh tantangan. Pengaruh teman sebaya, tekanan lingkungan, serta rasa ingin tahu yang tinggi sering menjadi jalan masuk paparan rokok, alkohol, hingga narkotika. Pelajari strategi pencegahan diri (Refusal Skills), pola hidup sehat, serta peran lingkungan keluarga dan sekolah untuk melindungi diri dari ancaman zat adiktif!
+                    </p>
+                    <button onclick="switchTab('materi')" class="bg-emerald-400 hover:bg-emerald-300 text-slate-950 px-6 py-3 rounded-xl font-extrabold text-sm shadow-lg transform hover:-translate-y-0.5 transition flex items-center gap-2">
+                        <span>Pelajari Strategi Pencegahan</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="absolute -right-10 -bottom-10 opacity-15 pointer-events-none text-slate-100">
+                    <i class="fa-solid fa-shield-heart text-[240px]"></i>
+                </div>
+            </div>
+
+            <!-- Learning Objectives & Competencies -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Objectives -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h3 class="font-extrabold text-lg text-slate-900 mb-2">Tujuan Pembelajaran</h3>
+                    <ul class="text-xs md:text-sm text-slate-600 space-y-2 list-disc list-inside font-medium">
+                        <li>Mengidentifikasi berbagai upaya pencegahan diri dari pengaruh zat adiktif.</li>
+                        <li>Menerapkan teknik menolak bujukan (Refusal Skills) dengan tegas dan bijak.</li>
+                        <li>Memahami pentingnya gaya hidup sehat, positif, dan berkarakter islami.</li>
+                    </ul>
+                </div>
+
+                <!-- Indicators -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-teal-100 text-teal-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-square-check"></i>
+                    </div>
+                    <h3 class="font-extrabold text-lg text-slate-900 mb-2">Indikator Ketercapaian</h3>
+                    <ul class="text-xs md:text-sm text-slate-600 space-y-2 list-disc list-inside font-medium">
+                        <li>Mampu mensimulasikan respon menolak ajakan zat adiktif di Lab Simulasi.</li>
+                        <li>Merancang peta aksi pola hidup sehat pada lembar kerja LKPD.</li>
+                        <li>Meraih skor optimal pada evaluasi kuis pengetahuan pencegahan adiksi.</li>
+                    </ul>
+                </div>
+
+                <!-- Instructions -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md transition">
+                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <h3 class="font-extrabold text-lg text-slate-900 mb-2">Panduan Belajar</h3>
+                    <ol class="text-xs md:text-sm text-slate-600 space-y-2 list-decimal list-inside font-medium">
+                        <li>Simak materi 3 pilar utama pencegahan pada tab **Strategi Pencegahan**.</li>
+                        <li>Lakukan uji keterampilan menolak bujukan di **Lab Simulasi**.</li>
+                        <li>Lengkapi lembar analisis komitmen diri pada tab **LKPD**.</li>
+                        <li>Uji kesiapan dan pemahamanmu pada **Kuis Evaluasi**.</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 2: MATERI PEMBELAJARAN ================= -->
+        <section id="sec-materi" class="tab-content hidden space-y-6">
+            <!-- Header Materi -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <div class="flex items-center gap-3 mb-2">
+                    <span class="w-3 h-8 bg-emerald-600 rounded-full inline-block"></span>
+                    <h3 class="text-xl font-extrabold text-slate-900">3 Pilar Utama Upaya Menghindarkan Diri dari Zat Adiktif</h3>
+                </div>
+                <p class="text-slate-600 leading-relaxed text-sm md:text-base font-medium">
+                    Mencegah bahaya zat adiktif memerlukan pendekatan menyeluruh mulai dari benteng internal (diri sendiri) hingga dukungan dari lingkungan keluarga, sekolah, dan masyarakat.
+                </p>
+            </div>
+
+            <!-- Grid 3 Pilar -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- 1. Diri Sendiri -->
+                <div class="materi-card bg-white p-6 rounded-2xl border-2 border-emerald-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-11 h-11 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-xl shadow">
+                                <i class="fa-solid fa-user-shield"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-extrabold text-slate-900 text-base">1. Benteng Diri (Internal)</h4>
+                                <span class="text-[11px] text-emerald-700 font-bold uppercase tracking-wider">Karakter & Refusal Skills</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-2 text-xs text-slate-700 font-medium list-disc list-inside">
+                            <li><strong>Meningkatkan Iman & Taqwa:</strong> Memperkuat ibadah dan prinsip moral agama.</li>
+                            <li><strong>Teknik Menolak (Refusal Skills):</strong> Berani berkata "TIDAK!" pada ajakan rokok/narkoba tanpa rasa ragu.</li>
+                            <li><strong>Mencari Informasi Akurat:</strong> Memahami bahaya fatal zat adiktif bagi saraf dan tubuh.</li>
+                            <li><strong>Prinsip Diri Teguh:</strong> Tidak terpengaruh gengsi atau tekanan teman sebaya.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2. Keluarga -->
+                <div class="materi-card bg-white p-6 rounded-2xl border-2 border-teal-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-11 h-11 rounded-xl bg-teal-600 text-white flex items-center justify-center font-bold text-xl shadow">
+                                <i class="fa-solid fa-house-chimney-window"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-extrabold text-slate-900 text-base">2. Peran Keluarga</h4>
+                                <span class="text-[11px] text-teal-700 font-bold uppercase tracking-wider">Komunikasi & Kasih Sayang</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-2 text-xs text-slate-700 font-medium list-disc list-inside">
+                            <li><strong>Komunikasi Terbuka:</strong> Menceritakan permasalahan kepada orang tua tanpa rasa takut.</li>
+                            <li><strong>Keharmonisan Rumah:</strong> Menciptakan suasana hangat, nyaman, dan saling mendukung.</li>
+                            <li><strong>Pengawasan Orang Tua:</strong> Mengetahui teman bergaul dan kegiatan anak di luar rumah.</li>
+                            <li><strong>Keteladanan:</strong> Orang tua memberi contoh hidup sehat tanpa merokok/alkohol.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 3. Sekolah & Masyarakat -->
+                <div class="materi-card bg-white p-6 rounded-2xl border-2 border-indigo-200 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-11 h-11 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-xl shadow">
+                                <i class="fa-solid fa-people-roof"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-extrabold text-slate-900 text-base">3. Sekolah & Lingkungan</h4>
+                                <span class="text-[11px] text-indigo-700 font-bold uppercase tracking-wider">Ekstrakurikuler & Edukasi</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-2 text-xs text-slate-700 font-medium list-disc list-inside">
+                            <li><strong>Pramuka, PMR & Olahraga:</strong> Mengisi waktu luang dengan kegiatan positif berprestasi.</li>
+                            <li><strong>Kawasan Bebas Rokok (KBR):</strong> Mematuhi tata tertib disiplin sekolah.</li>
+                            <li><strong>Memilih Teman Sebaya:</strong> Berteman dengan komunitas yang memberikan pengaruh positif.</li>
+                            <li><strong>Penyuluhan BNN:</strong> Aktif mengikuti literasi bahaya narkoba di lingkungan MTs.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- 5 Langkah EFEKTIF Menolak Bujukan (Refusal Skill Model) -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <h3 class="text-lg font-extrabold text-slate-900 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-hand text-emerald-600"></i> Teknik Refusal Skills: 5 Langkah Menolak Bujukan Teman
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs font-medium">
+                    <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200">
+                        <span class="font-extrabold text-emerald-900 text-sm block mb-1">1. Katakan TIDAK</span>
+                        <p class="text-slate-700">Gunakan kata "Tidak, terima kasih" dengan nada mantap, jelas, dan percaya diri.</p>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-teal-50 border border-teal-200">
+                        <span class="font-extrabold text-teal-900 text-sm block mb-1">2. Beri Alasan Jelas</span>
+                        <p class="text-slate-700">Sampaikan alasan kesehatan, aturan agama, atau larangan orang tua/sekolah.</p>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-sky-50 border border-sky-200">
+                        <span class="font-extrabold text-sky-900 text-sm block mb-1">3. Alihkan Topik</span>
+                        <p class="text-slate-700">Ajak melakukan kegiatan lain, seperti main basket, mengerjakan tugas, atau berolahraga.</p>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-indigo-50 border border-indigo-200">
+                        <span class="font-extrabold text-indigo-900 text-sm block mb-1">4. Tinggalkan Lokasi</span>
+                        <p class="text-slate-700">Jika teman terus memaksa, segera pamit atau tinggalkan tempat tersebut.</p>
+                    </div>
+                    <div class="p-3.5 rounded-xl bg-purple-50 border border-purple-200">
+                        <span class="font-extrabold text-purple-900 text-sm block mb-1">5. Cari Bantuan</span>
+                        <p class="text-slate-700">Ceritakan kejadian pemaksaan tersebut kepada Guru BK atau Orang Tua.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Banner Slogan Sehat -->
+            <div class="bg-slate-900 text-white rounded-2xl p-5 flex flex-col md:flex-row items-center gap-4 shadow-lg border border-slate-800">
+                <div class="w-14 h-14 bg-emerald-500 text-slate-950 rounded-2xl flex items-center justify-center text-3xl font-bold flex-shrink-0 shadow">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                </div>
+                <div>
+                    <h4 class="font-extrabold text-emerald-400 text-base mb-1">Generasi Sehat, Prestasi Hebat, Bebas Zat Adiktif!</h4>
+                    <p class="text-xs md:text-sm text-slate-300 leading-relaxed font-medium">
+                        Masa depanmu terlalu berharga untuk ditukar dengan kenikmatan semu zat adiktif. Jadilah pelopor siswa MTs Kota Malang yang berani menolak zat adiktif dan berprestasi!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 3: LABORATORIUM VIRTUAL ================= -->
+        <section id="sec-lab" class="tab-content hidden space-y-6">
+            <div class="bg-slate-900 text-white rounded-3xl p-6 md:p-8 shadow-2xl space-y-8">
+                
+                <!-- SIMULASI 1: Simulator Teknik Menolak Bujukan (Refusal Skill Simulator) -->
+                <div class="space-y-4">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-800 pb-4 gap-2">
+                        <div>
+                            <span class="bg-emerald-500/20 text-emerald-400 font-extrabold text-xs px-3 py-1 rounded-full border border-emerald-500/30">Simulasi 1</span>
+                            <h3 class="text-xl md:text-2xl font-extrabold mt-1">Simulator Respon Menolak Bujukan (Refusal Skill Test)</h3>
+                            <p class="text-xs text-slate-400">Uji seberapa tangguh dan bijak responmu ketika dihadapkan pada skenario bujukan teman sebaya!</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Skenario Choice -->
+                        <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 space-y-4 text-xs font-medium">
+                            <div>
+                                <label class="block font-bold text-emerald-400 uppercase tracking-wider mb-2">1. Pilih Skenario Bujukan:</label>
+                                <select id="sim-scenario" onchange="runRefusalSim()" class="w-full p-3 bg-slate-900 border border-slate-700 rounded-xl text-white font-bold focus:outline-none focus:border-emerald-500">
+                                    <option value="rokok">Diajak mencoba rokok/vape saat nongkrong</option>
+                                    <option value="alkohol">Ditawari minuman keras saat pesta ultah</option>
+                                    <option value="obat">Diingatkan minum obat penenang tanpa resep obat</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block font-bold text-emerald-400 uppercase tracking-wider mb-2">2. Pilih Tindakan Responmu:</label>
+                                <select id="sim-action" onchange="runRefusalSim()" class="w-full p-3 bg-slate-900 border border-slate-700 rounded-xl text-white font-bold focus:outline-none focus:border-emerald-500">
+                                    <option value="tegas">Menolak tegas + Beri alasan sehat + Alihkan topik</option>
+                                    <option value="ragu">Coba sedikit saja karena sungkan dipanggil penakut</option>
+                                    <option value="diam">Diam dan menerima tawaran tanpa perlawanan</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Feedback Output Visualizer -->
+                        <div class="lg:col-span-2 bg-slate-950 p-6 rounded-2xl border border-slate-800 flex flex-col items-center justify-between min-h-[300px]">
+                            <div class="text-center w-full">
+                                <span class="bg-slate-800 text-slate-300 font-bold text-[11px] px-3 py-1 rounded-full border border-slate-700">Analisis Respon Ketahanan Diri:</span>
+                                <h4 id="sim-title" class="text-2xl font-extrabold text-emerald-400 mt-3">Keputusan Sangat Bijak & Hebat!</h4>
+                            </div>
+
+                            <!-- Visual Status Icon -->
+                            <div class="my-6 text-center space-y-2">
+                                <div id="sim-icon-bg" class="w-24 h-24 rounded-2xl bg-emerald-950/80 border-2 border-emerald-500 flex items-center justify-center mx-auto text-4xl text-emerald-400 shadow-lg">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </div>
+                                <span id="sim-badge" class="inline-block bg-emerald-500/20 text-emerald-400 font-extrabold text-xs px-4 py-1.5 rounded-xl border border-emerald-500/30">Skor Ketahanan: 100/100 (Bebas Adiksi)</span>
+                            </div>
+
+                            <div class="w-full bg-slate-900 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-2" id="sim-details">
+                                <p><strong>Evaluasi:</strong> Menolak tegas sambil mengalihkan topik adalah kunci utama Refusal Skill. Kamu berhasil menjaga kesehatan tubuh dan prinsip diri!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SIMULASI 2: Kalkulator Jam Kegiatan Positif (Healthy Lifestyle Balance) -->
+                <div class="space-y-4 pt-4 border-t border-slate-800">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-800 pb-4 gap-2">
+                        <div>
+                            <span class="bg-teal-500/20 text-teal-400 font-extrabold text-xs px-3 py-1 rounded-full border border-teal-500/30">Simulasi 2</span>
+                            <h3 class="text-xl md:text-2xl font-extrabold mt-1">Kalkulator Keseimbangan Waktu Kegiatan Positif Harian</h3>
+                            <p class="text-xs text-slate-400">Geser slider jam kegiatan positif bulanan untuk melihat tingkat risiko paparan pergaulan negatif!</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                        <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700 space-y-4 text-xs font-medium">
+                            <div>
+                                <label class="block font-bold text-teal-400 uppercase tracking-wider mb-1">Olahraga & Ekstrakurikuler (Jam/Minggu):</label>
+                                <input type="range" id="jam-olahraga" min="0" max="15" value="6" oninput="calcLifestyleSim()" class="w-full accent-teal-400 cursor-pointer">
+                                <span id="val-olahraga" class="text-slate-300 font-bold">6 Jam/Minggu</span>
+                            </div>
+
+                            <div>
+                                <label class="block font-bold text-emerald-400 uppercase tracking-wider mb-1">Belajar & Keagamaan/Mengaji (Jam/Minggu):</label>
+                                <input type="range" id="jam-belajar" min="0" max="20" value="10" oninput="calcLifestyleSim()" class="w-full accent-emerald-400 cursor-pointer">
+                                <span id="val-belajar" class="text-slate-300 font-bold">10 Jam/Minggu</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950 p-6 rounded-2xl border border-slate-800 text-center space-y-3">
+                            <span class="text-xs text-slate-400 uppercase font-bold">Tingkat Risiko Terpengaruh Pergaulan Bebas:</span>
+                            <div id="lifestyle-risk-text" class="text-3xl font-extrabold text-emerald-400">SANGAT RENDAH (AMAN)</div>
+                            <p id="lifestyle-desc" class="text-xs text-slate-300">Waktumu diisi dengan kegiatan bermanfaat sehingga tidak ada ruang untuk terpengaruh bujukan zat adiktif!</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= SECTION 4: LKPD INTERAKTIF ================= -->
+        <section id="sec-lkpd" class="tab-content hidden space-y-6">
+            <div id="print-section" class="bg-white rounded-3xl p-6 md:p-10 border border-slate-200/80 shadow-md space-y-6">
+                <!-- Header LKPD -->
+                <div class="border-b-2 border-slate-900 pb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <span class="text-xs font-bold text-emerald-600 tracking-wider uppercase">Lembar Kerja Peserta Didik (LKPD)</span>
+                        <h2 class="text-xl md:text-2xl font-extrabold text-slate-900">Rencana Aksi Komitmen Diri Bebas Zat Adiktif</h2>
+                        <p class="text-xs text-slate-500 font-semibold">Mata Pelajaran IPA Kelas IX - MTs Kota Malang</p>
+                    </div>
+                    <button onclick="window.print()" class="no-print bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-xl text-xs font-extrabold transition flex items-center gap-2 shadow-lg">
+                        <i class="fa-solid fa-print"></i> Cetak / Simpan PDF
+                    </button>
+                </div>
+
+                <!-- Form Identitas -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-medium">
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Nama Lengkap Siswa:</label>
+                        <input type="text" placeholder="Ketik nama lengkap..." class="w-full p-2.5 bg-white border border-slate-300 rounded-xl focus:outline-none focus:border-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Kelas / No. Absen:</label>
+                        <input type="text" placeholder="Contoh: IX-A / 12" class="w-full p-2.5 bg-white border border-slate-300 rounded-xl focus:outline-none focus:border-emerald-500">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-slate-700 mb-1">Nama MTs / Sekolah:</label>
+                        <input type="text" placeholder="Nama MTs..." class="w-full p-2.5 bg-white border border-slate-300 rounded-xl focus:outline-none focus:border-emerald-500">
+                    </div>
+                </div>
+
+                <!-- Pemetaan LKPD -->
+                <div class="space-y-4">
+                    <h3 class="font-extrabold text-slate-900 text-sm md:text-base flex items-center gap-2">
+                        <span class="w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center text-xs">1</span>
+                        Tabel Perencanaan Kegiatan Positif Pencegahan Adiksi
+                    </h3>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs text-left text-slate-700 border border-slate-200 rounded-xl overflow-hidden">
+                            <thead class="bg-slate-100 text-slate-900 uppercase font-bold text-[11px]">
+                                <tr>
+                                    <th class="p-3 border-b">Bidang Upaya</th>
+                                    <th class="p-3 border-b">Rencana Aksi Konkret</th>
+                                    <th class="p-3 border-b">Target / Frekuensi</th>
+                                    <th class="p-3 border-b">Manfaat Bagi Diri</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 font-medium">
+                                <tr>
+                                    <td class="p-2"><input type="text" value="Pengembangan Minat & Olahraga" class="w-full p-2 border rounded-lg bg-slate-50 font-bold"></td>
+                                    <td class="p-2"><input type="text" placeholder="Ikut Futsal / Pencak Silat di MTs" class="w-full p-2 border rounded-lg"></td>
+                                    <td class="p-2"><input type="text" placeholder="2 Kali seminggu" class="w-full p-2 border rounded-lg"></td>
+                                    <td class="p-2"><input type="text" placeholder="Tubuh bugar, terhindar dari pergaulan salah" class="w-full p-2 border rounded-lg"></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2"><input type="text" value="Kegiatan Agama & Karakter" class="w-full p-2 border rounded-lg bg-slate-50 font-bold"></td>
+                                    <td class="p-2"><input type="text" placeholder="Mengaji & Kajian Remaja Masjid" class="w-full p-2 border rounded-lg"></td>
+                                    <td class="p-2"><input type="text" placeholder="Setiap hari / Setiap pekan" class="w-full p-2 border rounded-lg"></td>
+                                    <td class="p-2"><input type="text" placeholder="Memperkuat benteng keimanan & moral" class="w-full p-2 border rounded-lg"></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2"><input type="text" value="Komunikasi Keluarga" class="w-full p-2 border rounded-lg bg-slate-50 font-bold"></td>
+                                    <td class="p-2"><input type="text" placeholder="Curhat masalah ke orang tua" class="w-full p-2 border rounded-lg"></td>
+                                    <td class="p-2"><input type="text" placeholder="Setiap ada masalah" class="w-full p-2 border rounded-lg"></td>
+                                    <td class="p-2"><input type="text" placeholder="Mendapat arahan bijak dari orang tua" class="w-full p-2 border rounded-lg"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Pertanyaan Refleksi LKPD -->
+                <div class="space-y-4 pt-2">
+                    <h3 class="font-extrabold text-slate-900 text-sm md:text-base flex items-center gap-2">
+                        <span class="w-6 h-6 bg-emerald-600 text-white rounded-full flex items-center justify-center text-xs">2</span>
+                        Studi Kasus & Komitmen Diri
+                    </h3>
+
+                    <div class="space-y-4 text-xs font-medium">
+                        <div>
+                            <label class="block font-bold text-slate-800 mb-1">A. Jika teman dekatmu di lingkungan rumah mulai merokok/vape dan memaksamu ikut mencoba agar dianggap "keren", tulislah kalimat penolakan tegas yang akan kamu katakan!</label>
+                            <textarea rows="3" placeholder="Tuliskan kalimat penolakan tegas, bernada sopan namun mantap..." class="w-full p-3 border border-slate-300 rounded-xl focus:outline-none focus:border-emerald-500"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block font-bold text-slate-800 mb-1">B. Mengapa memiliki rasa percaya diri yang tinggi dan prinsip tidak gampang ikut-ikutan sangat efektif mencegah remaja terjerat zat adiktif?</label>
+                            <textarea rows="3" placeholder="Tuliskan analisis hubungan antara karakter percaya diri dengan ketahanan menolak bujukan negatif..." class="w-full p-3 border border-slate-300 rounded-xl focus:outline-none focus:border-emerald-500"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Signature Section for Print -->
+                <div class="pt-6 border-t border-slate-200 grid grid-cols-2 gap-4 text-center text-xs font-medium">
+                    <div>
+                        <p class="text-slate-500 mb-12">Mengetahui, Guru Pembimbing IPA</p>
+                        <p class="font-bold border-t border-slate-400 w-44 mx-auto pt-1">( ............................................ )</p>
+                    </div>
+                    <div>
+                        <p class="text-slate-500 mb-12">Malang, ......................... 2026<br>Peserta Didik</p>
+                        <p class="font-bold border-t border-slate-400 w-44 mx-auto pt-1">( ............................................ )</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 5: KUIS INTERAKTIF ================= -->
+        <section id="sec-kuis" class="tab-content hidden space-y-6">
+            <div class="max-w-3xl mx-auto bg-white rounded-3xl p-6 md:p-8 border border-slate-200/80 shadow-xl">
+                
+                <!-- Quiz Screen Intro -->
+                <div id="quiz-intro" class="text-center space-y-4 py-6">
+                    <div class="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto shadow-inner">
+                        <i class="fa-solid fa-shield-heart"></i>
+                    </div>
+                    <h3 class="text-2xl font-extrabold text-slate-900">Evaluasi Upaya Pencegahan Zat Adiktif</h3>
+                    <p class="text-xs md:text-sm text-slate-600 max-w-md mx-auto font-medium">
+                        Uji pengetahuanmu mengenai teknik menolak bujukan (Refusal Skills), pola hidup sehat, serta peran 3 pilar pencegahan melalui 10 soal HOTS.
+                    </p>
+                    <button onclick="startQuiz()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold px-8 py-3.5 rounded-xl shadow-lg transition transform hover:scale-105 inline-flex items-center gap-2 text-sm">
+                        <span>Mulai Kuis Sekarang</span>
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+
+                <!-- Quiz Screen Active -->
+                <div id="quiz-active" class="hidden space-y-6">
+                    <!-- Progress Bar -->
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                        <span id="quiz-progress-text" class="text-xs font-extrabold text-emerald-600 uppercase tracking-wider">Soal 1 dari 10</span>
+                        <div class="w-1/2 bg-slate-100 rounded-full h-3 overflow-hidden">
+                            <div id="quiz-progress-bar" class="bg-emerald-600 h-3 rounded-full transition-all duration-300" style="width: 10%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Question Text -->
+                    <div>
+                        <h4 id="quiz-question" class="font-extrabold text-slate-900 text-base md:text-lg mb-4">
+                            <!-- Populated by JS -->
+                        </h4>
+
+                        <!-- Options Grid -->
+                        <div id="quiz-options" class="space-y-2.5 font-medium">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Instant Feedback Box -->
+                    <div id="quiz-feedback" class="hidden p-4 rounded-xl text-xs font-semibold"></div>
+
+                    <!-- Next Button -->
+                    <div class="flex justify-end pt-2">
+                        <button id="quiz-next-btn" onclick="nextQuestion()" disabled class="bg-slate-300 text-slate-500 font-bold px-6 py-2.5 rounded-xl text-xs transition flex items-center gap-2">
+                            <span>Soal Berikutnya</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz Screen Result -->
+                <div id="quiz-result" class="hidden text-center space-y-6 py-6">
+                    <div class="w-24 h-24 rounded-full flex items-center justify-center text-4xl mx-auto shadow-lg" id="result-icon-bg">
+                        <i id="result-icon" class="fa-solid fa-award"></i>
+                    </div>
+
+                    <div>
+                        <span class="text-xs font-bold uppercase text-slate-400">Hasil Akhir Evaluasi</span>
+                        <h3 id="result-score-text" class="text-4xl font-extrabold text-slate-900 my-1">Skor: 0 / 100</h3>
+                        <p id="result-msg" class="text-xs md:text-sm text-slate-600 max-w-sm mx-auto font-medium"></p>
+                    </div>
+
+                    <div class="flex justify-center gap-3">
+                        <button onclick="startQuiz()" class="bg-slate-900 hover:bg-slate-800 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition flex items-center gap-2">
+                            <i class="fa-solid fa-rotate-right"></i>
+                            <span>Coba Lagi</span>
+                        </button>
+                        <button onclick="switchTab('lkpd')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition flex items-center gap-2">
+                            <span>Lanjut ke LKPD</span>
+                            <i class="fa-solid fa-file-pen"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-xs py-6 border-t border-slate-800 mt-10 no-print">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-2">
+            <p class="font-bold text-slate-300">Modul Interaktif IPA Kelas IX - Upaya Menghindarkan Diri dari Pengaruh Zat Adiktif</p>
+            <p>© 2026 MGMP IPA MTs Kota Malang. Seluruh hak cipta dilindungi undang-undang.</p>
+        </div>
+    </footer>
+
+    <script>
+        // State Management
+        let currentTab = 'pendahuluan';
+
+        // Tab Switcher Function
+        function switchTab(tabId) {
+            currentTab = tabId;
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('active');
+                el.classList.add('text-slate-300');
+            });
+
+            document.getElementById(`sec-${tabId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-${tabId}`);
+            if(activeBtn) {
+                activeBtn.classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ================= LAB SIMULATION 1: REFUSAL SKILL =================
+        function runRefusalSim() {
+            const scenario = document.getElementById('sim-scenario').value;
+            const action = document.getElementById('sim-action').value;
+
+            const title = document.getElementById('sim-title');
+            const badge = document.getElementById('sim-badge');
+            const details = document.getElementById('sim-details');
+            const iconBg = document.getElementById('sim-icon-bg');
+
+            if (action === 'tegas') {
+                iconBg.className = "w-24 h-24 rounded-2xl bg-emerald-950/80 border-2 border-emerald-500 flex items-center justify-center mx-auto text-4xl text-emerald-400 shadow-lg";
+                badge.className = "inline-block bg-emerald-500/20 text-emerald-400 font-extrabold text-xs px-4 py-1.5 rounded-xl border border-emerald-500/30";
+                title.innerText = "Keputusan Sangat Bijak & Hebat!";
+                badge.innerText = "Skor Ketahanan: 100/100 (Sangat Aman)";
+                details.innerHTML = `<p><strong>Evaluasi Respon:</strong> Kamu mempraktikkan <em>Refusal Skill</em> sempurna. Menolak tegas tanpa ragu serta memberi alasan logis adalah cara paling ampuh dihormati oleh teman!</p>`;
+            } else if (action === 'ragu') {
+                iconBg.className = "w-24 h-24 rounded-2xl bg-amber-950/80 border-2 border-amber-500 flex items-center justify-center mx-auto text-4xl text-amber-400 shadow-lg";
+                badge.className = "inline-block bg-amber-500/20 text-amber-400 font-extrabold text-xs px-4 py-1.5 rounded-xl border border-amber-500/30";
+                title.innerText = "Berisiko Ketergantungan!";
+                badge.innerText = "Skor Ketahanan: 40/100 (Waspada Bahaya)";
+                details.innerHTML = `<p><strong>Evaluasi Respon:</strong> Mencoba walau hanya sedikit adalah pintu awal jebakan ketergantungan (adiksi) saraf! Jangan pernah menukar kesehatan organmu demi gengsi.</p>`;
+            } else {
+                iconBg.className = "w-24 h-24 rounded-2xl bg-rose-950/80 border-2 border-rose-600 flex items-center justify-center mx-auto text-4xl text-rose-500 shadow-lg";
+                badge.className = "inline-block bg-rose-500/20 text-rose-400 font-extrabold text-xs px-4 py-1.5 rounded-xl border border-rose-500/30";
+                title.innerText = "Sangat Berbahaya & Merusak Masa Depan!";
+                badge.innerText = "Skor Ketahanan: 0/100 (Terjerat Adiksi)";
+                details.innerHTML = `<p><strong>Evaluasi Respon:</strong> Bersikap pasif membuatmu sangat rentan menjadi korban penyalahgunaan zat adiktif. Segera berlatih keberanian menolak!</p>`;
+            }
+        }
+
+        // ================= LAB SIMULATION 2: LIFESTYLE CALCULATOR =================
+        function calcLifestyleSim() {
+            const olahraga = parseInt(document.getElementById('jam-olahraga').value);
+            const belajar = parseInt(document.getElementById('jam-belajar').value);
+
+            document.getElementById('val-olahraga').innerText = `${olahraga} Jam/Minggu`;
+            document.getElementById('val-belajar').innerText = `${belajar} Jam/Minggu`;
+
+            const totalPositif = olahraga + belajar;
+            const riskText = document.getElementById('lifestyle-risk-text');
+            const desc = document.getElementById('lifestyle-desc');
+
+            if (totalPositif >= 15) {
+                riskText.innerText = "SANGAT RENDAH (AMAN)";
+                riskText.className = "text-3xl font-extrabold text-emerald-400";
+                desc.innerText = "Waktumu terisi penuh oleh kegiatan positif berprestasi. Kamu memiliki benteng diri yang sangat kuat dari pengaruh negatif lingkungan!";
+            } else if (totalPositif >= 8) {
+                riskText.innerText = "SEDANG (CUKUP AMAN)";
+                riskText.className = "text-3xl font-extrabold text-amber-400";
+                desc.innerText = "Kegiatan positifmu sudah cukup baik, tingkatkan lagi porsi olahraga dan kegiatan ekstrakurikuler sekolah!";
+            } else {
+                riskText.innerText = "TINGGI (RAWAN TERPENGARUH)";
+                riskText.className = "text-3xl font-extrabold text-rose-500";
+                desc.innerText = "Banyak waktu luang yang tidak terpakai produktif. Risiko terpengaruh ajakan nongkrong dan rokok menjadi lebih tinggi!";
+            }
+        }
+
+        // Quiz Questions (Fokus Upaya Menghindarkan Diri dari Zat Adiktif)
+        const quizQuestions = [
+            {
+                q: "1. Keterampilan sosial yang sangat penting dimiliki remaja untuk menolak ajakan coba-coba rokok atau narkoba dari teman dinamakan...",
+                options: ["Refusal Skills (Keterampilan Menolak)", "Communication Failure", "Social Pressure", "Passive Resistance"],
+                correct: 0,
+                exp: "Refusal Skills adalah kemampuan menolak tawaran negatif secara tegas, santun, dan percaya diri."
+            },
+            {
+                q: "2. Langkah pertama yang paling tepat dilakukan ketika seorang teman menawarkan vape atau rokok secara paksa adalah...",
+                options: ["Mencobanya agar tidak dimusuhi", "Mengucapkan kata 'TIDAK' secara tegas dan mantap", "Pura-pura sakit perut", "Membeli rokok tersebut"],
+                correct: 1,
+                exp: "Mengucapkan kata TIDAK dengan tegas tanpa ragu adalah benteng utama komunikasi menolak."
+            },
+            {
+                q: "3. Mengapa mengisi waktu luang dengan kegiatan ekstrakurikuler seperti Pramuka, PMR, atau Olahraga efektif mencegah zat adiktif?",
+                options: ["Karena membuat tubuh lelah sepanjang hari", "Karena mengalihkan perhatian ke aktivitas positif dan memperluas pergaulan sehat", "Karena diawasi polisi secara ketat", "Karena tidak membutuhkan biaya"],
+                correct: 1,
+                exp: "Aktivitas positif membangun karakter, kesehatan fisik, dan lingkungan pertemanan yang sehat."
+            },
+            {
+                q: "4. Peran paling mendasar dari lingkungan KELUARGA dalam menghindarkan remaja dari zat adiktif adalah...",
+                options: ["Memberikan uang saku berlimpah", "Menciptakan komunikasi terbuka dan suasana kasih sayang di rumah", "Membiarkan anak bebas keluar malam", "Membelikan semua barang yang diminta"],
+                correct: 1,
+                exp: "Komunikasi terbuka dan kehangatan keluarga membuat remaja merasa aman bercerita tanpa perlu melarihkan diri ke obat-obatan."
+            },
+            {
+                q: "5. Manakah yang merupakan contoh sikap menjaga benteng diri (internal) dari bahaya zat adiktif?",
+                options: ["Mengikuti tren pergaulan bebas demi gengsi", "Meningkatkan iman dan taqwa serta berprinsip teguh", "Selalu menyendiri di kamar", "Menolak berteman dengan siapapun"],
+                correct: 1,
+                exp: "Iman, taqwa, dan prinsip teguh adalah fondasi karakter internal yang paling kokoh."
+            },
+            {
+                q: "6. Jika teman sekelompokmu terus memaksa mengonsumsi minuman keras saat nongkrong, tindakan terbaik yang harus dilakukan adalah...",
+                options: ["Ikut minum sedikit", "Menolak tegas, mengalihkan topik, dan segera meninggalkan tempat tersebut", "Memarahi teman hingga berkelahi", "Menyimpan minuman tersebut di tas"],
+                correct: 1,
+                exp: "Menolak tegas lalu meninggalkan lokasi menjauhkan diri dari bahaya tekanan kelompok (peer pressure)."
+            },
+            {
+                q: "7. Mengapa memiliki informasi sains yang akurat tentang bahaya rokok dan narkoba penting bagi pelajar?",
+                options: ["Agar bisa menjawab soal ujian saja", "Agar menyadari risiko nyata kerusakan otak dan organ sehingga enggan mencoba", "Agar bisa menjual zat tersebut", "Agar ditakuti oleh teman"],
+                correct: 1,
+                exp: "Pemahaman sains tentang kerusakan otak/organ menimbulkan kesadaran rasional untuk melindungi diri."
+            },
+            {
+                q: "8. Sikap yang tepat terhadap teman yang sudah terlanjur menjadi korban ketergantungan (adiksi) zat adiktif adalah...",
+                options: ["Menjauhinya dan mengejeknya", "Mendukungnya untuk melapor ke IPWL/BNN atau Guru BK agar mendapat bantuan rehabilitasi", "Ikut mencoba zat yang dimilikinya", "Acuh tak acuh"],
+                correct: 1,
+                exp: "Mengarahkan korban adiksi ke lembaga rehabilitasi resmi (IPWL/BNN) dapat menyelamatkan jiwa dan masa depannya."
+            },
+            {
+                q: "9. Apa konsekuensi positif jika remaja konsisten menerapkan gaya hidup sehat bebas zat adiktif?",
+                options: ["Organ tubuh sehat, pikiran jernih, dan prestasi belajar optimal", "Mudah merasa stres", "Dijauhi oleh keluarga", "Fungsi saraf menurun"],
+                correct: 0,
+                exp: "Hidup bebas zat adiktif menjaga performa fungsi otak, daya ingat, serta kesehatan organ fisik."
+            },
+            {
+                q: "10. Slogan yang paling mencerminkan prinsip remaja berkarakter islami di MTs Kota Malang adalah...",
+                options: ["Coba dulu baru tahu", "Generasi Sehat, Berprestasi Hebat, Say No to Drugs!", "Ikut kawan asal senang", "Hidup santai tanpa aturan"],
+                correct: 1,
+                exp: "Generasi sehat dan berprestasi hebat adalah tujuan utama pendidikan IPA dan karakter madrasah."
+            }
+        ];
+
+        let quizCurrentIndex = 0;
+        let quizScore = 0;
+
+        function startQuiz() {
+            quizCurrentIndex = 0;
+            quizScore = 0;
+            
+            document.getElementById('quiz-intro').classList.add('hidden');
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-active').classList.remove('hidden');
+
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            const q = quizQuestions[quizCurrentIndex];
+            document.getElementById('quiz-progress-text').innerText = `Soal ${quizCurrentIndex + 1} dari ${quizQuestions.length}`;
+            document.getElementById('quiz-progress-bar').style.width = `${((quizCurrentIndex + 1) / quizQuestions.length) * 100}%`;
+
+            document.getElementById('quiz-question').innerText = q.q;
+            
+            const optionsBox = document.getElementById('quiz-options');
+            optionsBox.innerHTML = '';
+
+            const feedbackBox = document.getElementById('quiz-feedback');
+            feedbackBox.className = 'hidden';
+
+            const nextBtn = document.getElementById('quiz-next-btn');
+            nextBtn.disabled = true;
+            nextBtn.className = "bg-slate-300 text-slate-500 font-bold px-6 py-2.5 rounded-xl text-xs transition flex items-center gap-2 cursor-not-allowed";
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-3.5 rounded-xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50/50 text-xs md:text-sm font-semibold text-slate-800 transition flex items-center justify-between shadow-sm";
+                btn.innerHTML = `<span>${opt}</span> <i class="fa-regular fa-circle text-slate-300"></i>`;
+                btn.onclick = () => selectQuizAnswer(idx, btn);
+                optionsBox.appendChild(btn);
+            });
+        }
+
+        function selectQuizAnswer(selectedIndex, clickedBtn) {
+            const q = quizQuestions[quizCurrentIndex];
+            const optionsBox = document.getElementById('quiz-options');
+            
+            Array.from(optionsBox.children).forEach((child, idx) => {
+                child.disabled = true;
+                child.classList.remove('hover:border-emerald-500', 'hover:bg-emerald-50/50');
+                if(idx === q.correct) {
+                    child.className = "w-full text-left p-3.5 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-xs md:text-sm font-bold text-emerald-900 flex items-center justify-between shadow";
+                    child.querySelector('i').className = "fa-solid fa-circle-check text-emerald-600 text-base";
+                } else if(idx === selectedIndex) {
+                    child.className = "w-full text-left p-3.5 rounded-xl border-2 border-rose-500 bg-rose-50 text-xs md:text-sm font-bold text-rose-900 flex items-center justify-between shadow";
+                    child.querySelector('i').className = "fa-solid fa-circle-xmark text-rose-600 text-base";
+                }
+            });
+
+            const feedbackBox = document.getElementById('quiz-feedback');
+            feedbackBox.classList.remove('hidden');
+
+            if (selectedIndex === q.correct) {
+                quizScore += 10;
+                feedbackBox.className = "p-3.5 rounded-xl text-xs font-semibold bg-emerald-100 text-emerald-900 border border-emerald-300";
+                feedbackBox.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> <strong>Benar!</strong> ${q.exp}`;
+            } else {
+                feedbackBox.className = "p-3.5 rounded-xl text-xs font-semibold bg-rose-100 text-rose-900 border border-rose-300";
+                feedbackBox.innerHTML = `<i class="fa-solid fa-circle-xmark text-rose-600 mr-1"></i> <strong>Kurang Tepat.</strong> ${q.exp}`;
+            }
+
+            const nextBtn = document.getElementById('quiz-next-btn');
+            nextBtn.disabled = false;
+            nextBtn.className = "bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold px-6 py-2.5 rounded-xl text-xs transition flex items-center gap-2 cursor-pointer shadow-md";
+        }
+
+        function nextQuestion() {
+            quizCurrentIndex++;
+            if (quizCurrentIndex < quizQuestions.length) {
+                renderQuizQuestion();
+            } else {
+                showQuizResult();
+            }
+        }
+
+        function showQuizResult() {
+            document.getElementById('quiz-active').classList.add('hidden');
+            document.getElementById('quiz-result').classList.remove('hidden');
+
+            document.getElementById('result-score-text').innerText = `Skor: ${quizScore} / 100`;
+
+            const iconBg = document.getElementById('result-icon-bg');
+            const icon = document.getElementById('result-icon');
+            const msg = document.getElementById('result-msg');
+
+            if (quizScore >= 80) {
+                iconBg.className = "w-24 h-24 rounded-full flex items-center justify-center text-4xl mx-auto shadow-lg bg-emerald-100 text-emerald-600";
+                icon.className = "fa-solid fa-trophy";
+                msg.innerText = "Luar Biasa! Kamu memiliki pemahaman ketahanan diri dan keterampilan menolak bujukan yang sangat tangguh!";
+                
+                if (typeof confetti === 'function') {
+                    confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+                }
+            } else if (quizScore >= 60) {
+                iconBg.className = "w-24 h-24 rounded-full flex items-center justify-center text-4xl mx-auto shadow-lg bg-amber-100 text-amber-600";
+                icon.className = "fa-solid fa-star";
+                msg.innerText = "Bagus! Pemahaman pencegahanmu sudah cukup baik. Pelajari lagi 5 teknik Refusal Skills!";
+            } else {
+                iconBg.className = "w-24 h-24 rounded-full flex items-center justify-center text-4xl mx-auto shadow-lg bg-slate-200 text-slate-700";
+                icon.className = "fa-solid fa-book-open-reader";
+                msg.innerText = "Jangan berkecil hati! Ulangi membaca materi 3 pilar pencegahan dan coba uji simulasi teknik menolak kembali.";
+            }
+        }
+    </script>
+</body>
+</html>
